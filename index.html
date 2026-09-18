@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#100712">
   <meta name="description" content="Maya XatSpace · rock, misterio y buena vibra.">
-  <title>Maya · XatSpace v6.6.9</title>
-  <link rel="stylesheet" href="styles.css?v=668">
+  <title>Maya · XatSpace v6.7.4</title>
+  <link rel="stylesheet" href="styles.css?v=674">
 </head>
 <body>
 <div class="cursor-star" id="cursorStar" aria-hidden="true">✦</div>
@@ -14,43 +14,65 @@
 <section id="landing" class="screen landing-screen">
   <div class="stars"></div>
   <div class="floating-shapes"></div>
-  <header class="landing-topbar glass">
+  <div class="landing-aura" aria-hidden="true"></div>
+
+  <header class="landing-topbar landing-frame">
     <div class="brand-stack">
-      <div class="brand-main">MAYA ✦</div>
+      <div class="brand-main">MAYA <span class="brand-spark">✦</span></div>
       <div class="brand-copy">
-        <strong>Bienvenid@s a mi XatSpace</strong>
+        <strong>Bienvenid@s a mi <em>XatSpace</em></strong>
         <small>Música · misterio · buena vibra</small>
       </div>
     </div>
-    <div class="now-playing compact" id="landingNowPlaying">
-      <span>Reproduciendo ahora</span>
-      <strong id="landingTrack">La Grange · ZZ Top</strong>
+
+    <div class="landing-top-meta">
+      <div class="landing-idline">UN PEQUEÑO UNIVERSO · 109865673</div>
+      <div class="now-playing compact" id="landingNowPlaying">
+        <span>Reproduciendo ahora</span>
+        <strong id="landingTrack">La Grange · ZZ Top</strong>
+      </div>
+      <button class="effects-btn landing-effects" data-toggle-effects type="button">
+        <span>✦</span><span data-effects-label>Pausar efectos</span>
+      </button>
     </div>
-    <button class="effects-btn" data-toggle-effects type="button"><span>✦</span><span data-effects-label>Pausar efectos</span></button>
   </header>
 
-  <main class="landing-main glass">
+  <main class="landing-main landing-frame">
     <div class="landing-copy">
-      <div class="eyebrow">Bajo el signo de Escorpión</div>
+      <div class="eyebrow"><span></span>Bajo el signo de Escorpión</div>
       <h1>Un poco de caos.<br>Mucha <em>música</em>.<br>Toda yo.</h1>
-      <p>Bienvenid@ a mi XatSpace. Rock en el alma, estrellas en la mirada y un universo donde siempre suena algo bonito.</p>
-      <button id="enterBtn" class="enter-btn" type="button">Entrar a mi universo <span>→</span></button>
-      <div class="microcopy">La música empieza al entrar. Tú eliges el volumen.</div>
+      <p><strong>Bienvenid@ a mi XatSpace.</strong><br>Rock en el alma, estrellas en la mirada y un corazón que no sabe de medias tintas.</p>
+
+      <div class="landing-cta-row">
+        <button id="enterBtn" class="enter-btn" type="button">Entrar a mi universo <span>→</span></button>
+        <div class="landing-heart" aria-hidden="true">♡</div>
+      </div>
+      <div class="microcopy">♫ La música empieza al entrar. Tú eliges el volumen.</div>
+
+      <div class="zodiac-card">
+        <div class="zodiac-icon">♏</div>
+        <div><strong>Escorpión</strong><small>Intensa por naturaleza.</small></div>
+        <div class="zodiac-line"></div>
+        <div class="zodiac-heart">♡</div>
+      </div>
     </div>
 
     <div class="landing-visual">
-      <div class="landing-visual-bg"></div>
-      <img src="assets/images/portada-maya.webp" alt="Portada artística de Maya">
-      <div class="landing-caption">MAYA · 109865673 · ROCK NEVER DIES</div>
+      <div class="landing-orbit orbit-one" aria-hidden="true"></div>
+      <div class="landing-orbit orbit-two" aria-hidden="true"></div>
+      <div class="landing-visual-frame">
+        <img src="assets/images/portada-maya.webp" alt="Portada artística de Maya">
+        <span class="corner corner-a"></span><span class="corner corner-b"></span>
+      </div>
+      <div class="landing-visual-meta"><span>ROCK NEVER DIES</span><span>01 / MAYA</span></div>
     </div>
-
-    <aside class="landing-side-notes">
-      <div class="side-note"><span>🎤</span><strong>Música</strong><small>Mi refugio</small></div>
-      <div class="side-note"><span>♡</span><strong>Amistad</strong><small>Gente real</small></div>
-      <div class="side-note"><span>☆</span><strong>Buena vibra</strong><small>Siempre</small></div>
-      <div class="side-note"><span>♫</span><strong>Mi universo</strong><small>Eres bienvenid@</small></div>
-    </aside>
   </main>
+
+  <footer class="landing-footer">
+    <span>MAYA · 109865673</span>
+    <span>Hecho de música, noches y un poco de magia. <b>✦</b></span>
+    <span>ROSA · MORADO · ROCK</span>
+  </footer>
 </section>
 
 <section id="interior" class="screen interior-screen hidden">
@@ -242,6 +264,6 @@
   </section>
 </div>
 
-<script src="app.js?v=668"></script>
+<script src="app.js?v=674"></script>
 </body>
 </html>
