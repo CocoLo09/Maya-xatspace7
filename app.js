@@ -90,17 +90,24 @@ function initVinylMotion(){
 }
 
 function parkNeedle(){
+  needle.classList.remove('is-entering');
   needle.style.transform = 'rotate(-30deg)';
 }
 
 function updateNeedlePosition(forceStart=false){
+  // La base visual permanece fija; solo gira el brazo desde su pivote derecho.
+  if(forceStart){
+    needle.classList.add('is-entering');
+  }
   if(!audio.duration || !Number.isFinite(audio.duration)){
-    if(forceStart) needle.style.transform = 'rotate(7deg)';
+    if(forceStart) needle.style.transform = 'rotate(-5deg)';
     return;
   }
   const progress = Math.max(0, Math.min(1, audio.currentTime / audio.duration));
-  const angle = 7 + progress * 8;
+  // Recorrido visible y realista: entra al disco y avanza suavemente hacia el centro.
+  const angle = -5 + progress * 12;
   needle.style.transform = `rotate(${angle.toFixed(2)}deg)`;
+  if(progress > .02) needle.classList.remove('is-entering');
 }
 
 function fitInteriorUI(){
@@ -146,8 +153,11 @@ function updatePlayState(playing){
   vinyl.classList.toggle('playing', playing);
   eq.classList.toggle('playing', playing);
   if(playing){
-    // La base permanece fija; únicamente gira el brazo hacia el surco.
-    requestAnimationFrame(()=>updateNeedlePosition(true));
+    // Entrada claramente visible del brazo; la base nunca se mueve.
+    needle.classList.add('is-entering');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>updateNeedlePosition(true)));
+  } else {
+    needle.classList.remove('is-entering');
   }
 }
 
@@ -258,6 +268,88 @@ function startAboutAuto(){
   }, 12000);
 }
 
+
+function createAmbientDecor(){
+  const seeders = [
+    {section: 'landing', stars: '#landing .stars', floats: '#landing .floating-shapes', starCount: 42, floatCount: 20},
+    {section: 'interior', stars: '#interior .stars', floats: '#interior .floating-shapes', starCount: 62, floatCount: 30}
+  ];
+  const glyphs = ['♫','♪','✦','✧','♡','♩','❋','✩','⋆'];
+
+  seeders.forEach(cfg => {
+    document.querySelectorAll(cfg.stars).forEach((wrap, wrapIndex) => {
+      wrap.querySelectorAll('.ambient-star').forEach(n => n.remove());
+      const frag = document.createDocumentFragment();
+      for(let i=0;i<cfg.starCount;i++){
+        const s = document.createElement('span');
+        s.className = 'ambient-star' + ((i + wrapIndex) % 3 === 0 ? ' is-pink' : '');
+        const isInterior = cfg.section === 'interior';
+        const size = (Math.random() * (isInterior ? 4.6 : 3.8) + (isInterior ? 1.6 : 1.2)).toFixed(2) + 'px';
+        s.style.setProperty('--x', `${(Math.random()*100).toFixed(2)}%`);
+        s.style.setProperty('--y', `${(Math.random()*100).toFixed(2)}%`);
+        s.style.setProperty('--s', size);
+        s.style.setProperty('--o', (Math.random()*(isInterior ? 0.40 : 0.34) + (isInterior ? 0.58 : 0.48)).toFixed(2));
+        s.style.setProperty('--dur', `${(Math.random()*5 + (isInterior ? 3.6 : 4.5)).toFixed(2)}s`);
+        s.style.setProperty('--delay', `${(Math.random()*-10).toFixed(2)}s`);
+        frag.appendChild(s);
+      }
+      wrap.appendChild(frag);
+    });
+
+    document.querySelectorAll(cfg.floats).forEach((wrap, wrapIndex) => {
+      wrap.querySelectorAll('.ambient-float').forEach(n => n.remove());
+      const frag = document.createDocumentFragment();
+      const isInterior = cfg.section === 'interior';
+      for(let i=0;i<cfg.floatCount;i++){
+        const f = document.createElement('span');
+        const glyph = glyphs[(i + wrapIndex) % glyphs.length];
+        f.textContent = glyph;
+        f.className = 'ambient-float' + (glyph.includes('♫') || glyph.includes('♪') || glyph.includes('♩') ? ' is-note' : '');
+
+        let x;
+        if(isInterior){
+          if(i < Math.ceil(cfg.floatCount * 0.38)){
+            x = 1 + Math.random()*16;
+          }else if(i < Math.ceil(cfg.floatCount * 0.76)){
+            x = 82 + Math.random()*16;
+          }else{
+            x = 24 + Math.random()*52;
+          }
+        }else{
+          if(i < Math.ceil(cfg.floatCount * 0.35)){
+            x = 2 + Math.random()*18;
+          }else if(i < Math.ceil(cfg.floatCount * 0.7)){
+            x = 80 + Math.random()*18;
+          }else{
+            x = 18 + Math.random()*64;
+          }
+        }
+
+        const y = isInterior ? (2 + Math.random()*94) : (4 + Math.random()*90);
+        const size = isInterior ? (Math.random()*34 + 20) : (Math.random()*26 + 16);
+        const op = isInterior ? (Math.random()*0.22 + 0.56) : (Math.random()*0.24 + 0.42);
+        const dx = isInterior ? (Math.random()*110 - 55) : (Math.random()*72 - 36);
+        const dy = isInterior ? (Math.random()*-100 - 18) : (Math.random()*-58 - 12);
+
+        f.style.setProperty('--x', `${x.toFixed(2)}%`);
+        f.style.setProperty('--y', `${y.toFixed(2)}%`);
+        f.style.setProperty('--size', `${size.toFixed(2)}px`);
+        f.style.setProperty('--o', op.toFixed(2));
+        f.style.setProperty('--dur', `${(Math.random()*(isInterior ? 6 : 8) + (isInterior ? 9 : 10)).toFixed(2)}s`);
+        f.style.setProperty('--delay', `${(Math.random()*-18).toFixed(2)}s`);
+        f.style.setProperty('--dx', `${dx.toFixed(2)}px`);
+        f.style.setProperty('--dy', `${dy.toFixed(2)}px`);
+        f.style.setProperty('--rot', `${(Math.random()*44 - 22).toFixed(2)}deg`);
+        f.style.setProperty('--color', isInterior
+          ? (i % 4 === 0 ? 'rgba(255,160,229,.66)' : i % 4 === 1 ? 'rgba(255,118,214,.54)' : i % 4 === 2 ? 'rgba(255,188,239,.58)' : 'rgba(255,96,204,.52)')
+          : (i % 4 === 0 ? 'rgba(255,160,228,.52)' : i % 4 === 1 ? 'rgba(255,116,214,.42)' : i % 4 === 2 ? 'rgba(255,184,237,.44)' : 'rgba(255,92,203,.38)'));
+        frag.appendChild(f);
+      }
+      wrap.appendChild(frag);
+    });
+  });
+}
+
 function toggleEffects(){
   effectsOn = !effectsOn;
   document.body.classList.toggle('effects-paused', !effectsOn);
@@ -320,3 +412,4 @@ setTrack(0, false);
 setScene(0); buildSceneDots(); startSceneTimer();
 setMessage(0); updateVisitCounter(); buildAboutNav(); renderAbout(); startAboutAuto(); initCursor();
 audio.volume = .72;
+createAmbientDecor();
