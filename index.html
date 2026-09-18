@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100712">
+  <meta name="description" content="Maya XatSpace · rock, misterio y buena vibra.">
+  <title>Maya · XatSpace v6.6.9</title>
+  <link rel="stylesheet" href="styles.css?v=668">
+</head>
+<body>
+<div class="cursor-star" id="cursorStar" aria-hidden="true">✦</div>
+
+<section id="landing" class="screen landing-screen">
+  <div class="stars"></div>
+  <div class="floating-shapes"></div>
+  <header class="landing-topbar glass">
+    <div class="brand-stack">
+      <div class="brand-main">MAYA ✦</div>
+      <div class="brand-copy">
+        <strong>Bienvenid@s a mi XatSpace</strong>
+        <small>Música · misterio · buena vibra</small>
+      </div>
+    </div>
+    <div class="now-playing compact" id="landingNowPlaying">
+      <span>Reproduciendo ahora</span>
+      <strong id="landingTrack">La Grange · ZZ Top</strong>
+    </div>
+    <button class="effects-btn" data-toggle-effects type="button"><span>✦</span><span data-effects-label>Pausar efectos</span></button>
+  </header>
+
+  <main class="landing-main glass">
+    <div class="landing-copy">
+      <div class="eyebrow">Bajo el signo de Escorpión</div>
+      <h1>Un poco de caos.<br>Mucha <em>música</em>.<br>Toda yo.</h1>
+      <p>Bienvenid@ a mi XatSpace. Rock en el alma, estrellas en la mirada y un universo donde siempre suena algo bonito.</p>
+      <button id="enterBtn" class="enter-btn" type="button">Entrar a mi universo <span>→</span></button>
+      <div class="microcopy">La música empieza al entrar. Tú eliges el volumen.</div>
+    </div>
+
+    <div class="landing-visual">
+      <div class="landing-visual-bg"></div>
+      <img src="assets/images/portada-maya.webp" alt="Portada artística de Maya">
+      <div class="landing-caption">MAYA · 109865673 · ROCK NEVER DIES</div>
+    </div>
+
+    <aside class="landing-side-notes">
+      <div class="side-note"><span>🎤</span><strong>Música</strong><small>Mi refugio</small></div>
+      <div class="side-note"><span>♡</span><strong>Amistad</strong><small>Gente real</small></div>
+      <div class="side-note"><span>☆</span><strong>Buena vibra</strong><small>Siempre</small></div>
+      <div class="side-note"><span>♫</span><strong>Mi universo</strong><small>Eres bienvenid@</small></div>
+    </aside>
+  </main>
+</section>
+
+<section id="interior" class="screen interior-screen hidden">
+  <div class="stars interior-stars"></div>
+  <div class="floating-shapes interior-shapes"></div>
+
+  <div class="interior-ui" id="interiorUi">
+  <header class="interior-topbar glass">
+    <div class="brandline">
+      <span class="brand-maya">MAYA ✦</span>
+      <span class="welcome">Bienvenid@s a mi XatSpace</span>
+    </div>
+    <div class="topbar-center compact">
+      <small>Reproduciendo ahora</small>
+      <strong id="topTrack">La Grange · ZZ Top</strong>
+    </div>
+    <div class="interior-actions">
+      <button class="icon-btn" data-toggle-effects type="button" aria-label="Pausar efectos">✦</button>
+      <button class="icon-btn" id="homeBtn" type="button" aria-label="Volver al inicio">⌂</button>
+    </div>
+  </header>
+
+  <main class="main-grid">
+    <section class="panel profile-panel fold-left">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker">👤 Mi perfil</div>
+          <div class="panel-title">Maya</div>
+        </div>
+        <span class="panel-mini-text">Soft girl · rock soul</span>
+      </div>
+
+      <div class="profile-photo-wrap">
+        <img class="profile-photo" src="assets/images/perfil-maya.webp" alt="Perfil de Maya">
+      </div>
+
+      <div class="profile-meta">
+        <div class="profile-id">109865673 ♡</div>
+        <blockquote>“Un poco de caos.<br>Mucha música.<br>Toda yo.” ♡</blockquote>
+      </div>
+
+      <ul class="profile-list">
+        <li>♫ Amante del rock</li>
+        <li>♫ Colecciono momentos</li>
+        <li>♫ Caos creativo</li>
+        <li>♫ Aquí todo suena mejor</li>
+      </ul>
+
+      <button id="openAbout" class="about-launch" type="button"><span>👥 Conoce algo sobre mí</span><small>9 categorías</small></button>
+    </section>
+
+    <section class="panel scene-panel fold-center">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker">🎬 Escenas</div>
+          <div class="panel-title">Mi universo</div>
+        </div>
+        <span id="sceneLabel">Escena 01</span>
+      </div>
+
+      <div class="scene-shell">
+        <div class="scene-stage">
+          <img id="sceneImg" src="assets/images/scene-01.webp" alt="Escena artística de Maya">
+          <button id="scenePrev" class="scene-arrow scene-arrow-left" type="button" aria-label="Escena anterior">‹</button>
+          <button id="sceneNext" class="scene-arrow scene-arrow-right" type="button" aria-label="Escena siguiente">›</button>
+          <div class="scene-overlay"><span>Cambio automático + navegación manual</span><span id="sceneTimer">8s</span></div>
+        </div>
+      </div>
+
+      <div class="scene-footer">
+        <div class="scene-auto"><span>Auto</span><button id="sceneAuto" class="switch on" type="button" aria-pressed="true"><span></span></button></div>
+        <div id="sceneDots" class="scene-dots"></div>
+        <div class="scene-count"><span id="sceneNumber">1</span> / 10</div>
+      </div>
+    </section>
+
+    <section class="panel player-panel fold-right">
+      <div class="panel-head player-panel-head">
+        <div>
+          <div class="panel-kicker">♫ Reproductor</div>
+          <div class="panel-title">Vinilo nocturno</div>
+        </div>
+        <span class="player-signature">Maya ♡</span>
+      </div>
+
+      <div class="player-premium-card">
+        <div class="player-showcase">
+          <div class="turntable-zone premium-turntable">
+            <span class="turntable-tag tag-left">ROCK<br>GIRL<br>FOREVER ♡</span>
+            <span class="turntable-tag tag-right">BUENAS<br>CANCIONES<br>SALVAN DÍAS ♡</span>
+            <span class="turntable-spark spark-1">✦</span>
+            <span class="turntable-spark spark-2">✧</span>
+            <span class="turntable-spark spark-3">✦</span>
+
+            <div id="vinyl" class="vinyl premium-vinyl" aria-label="Disco de vinilo giratorio">
+              <span class="vinyl-gloss"></span>
+              <div class="vinyl-label">
+                <span class="vinyl-label-crown">♛</span>
+                <span class="vinyl-label-heart">♥</span>
+                <span class="vinyl-spindle"></span>
+              </div>
+            </div>
+
+            <span class="needle-base" aria-hidden="true"><span class="needle-base-inner"></span></span>
+            <div id="needleArm" class="needle-arm" aria-hidden="true">
+              <span class="needle-stick"></span>
+              <span class="needle-head"></span>
+              <span class="needle-tip"></span>
+            </div>
+          </div>
+
+          <div class="album-display">
+            <div class="album-back-disc" aria-hidden="true"></div>
+            <div class="album-art-wrap"><img id="albumArt" class="album-art" src="assets/covers/la-grange.webp" alt="Portada actual"></div>
+          </div>
+
+          <div class="eq" id="eqBars" aria-hidden="true"></div>
+        </div>
+
+        <div class="track-card premium-track-card">
+          <div class="track-heading-row">
+            <div>
+              <strong id="trackTitle">La Grange</strong>
+              <span id="trackArtist">ZZ Top</span>
+            </div>
+            <span class="track-heart" aria-hidden="true">♡</span>
+          </div>
+          <input id="seek" class="seek" type="range" min="0" max="100" value="0" aria-label="Posición de reproducción">
+          <div class="track-time-row"><span id="currentTime">0:00</span><span id="durationTime">0:00</span></div>
+        </div>
+
+        <div class="transport premium-transport">
+          <button id="prevTrack" type="button" aria-label="Tema anterior">◀</button>
+          <button id="playBtn" class="play" type="button" aria-label="Reproducir o pausar"><span id="playIcon">▶</span></button>
+          <button id="nextTrack" type="button" aria-label="Tema siguiente">▶</button>
+        </div>
+
+        <div class="volume-row premium-volume"><span>🔊</span><input id="volume" type="range" min="0" max="100" value="72" aria-label="Volumen"><output id="volumeOut">72%</output></div>
+        <div class="track-status">Reproducción continua · 4 temas</div>
+      </div>
+      <audio id="audio" preload="metadata"></audio>
+    </section>
+  </main>
+
+  <div class="bottom-grid">
+    <section class="panel visits">
+      <div class="panel-kicker">📊 Visitas a mi XatSpace</div>
+      <div class="visits-row">
+        <div class="counter-orb">✦</div>
+        <div>
+          <div id="visitNumber" class="visit-number">0</div>
+        </div>
+      </div>
+      <div class="visit-thanks">Gracias por estar aquí ♡</div>
+    </section>
+
+    <section class="panel messages">
+      <div class="panel-kicker">💬 Mensajes / frases</div>
+      <div class="message-box">
+        <div id="messageText" class="message-text"></div>
+        <div class="message-nav">
+          <button id="msgPrev" type="button">‹</button>
+          <button id="msgNext" type="button">›</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  </div>
+</section>
+
+<div id="aboutBackdrop" class="modal-backdrop hidden">
+  <section class="about-modal">
+    <header class="modal-head">
+      <h2>♫ Conoce Algo Sobre Mí <span class="maya-script">Maya ♡</span></h2>
+      <button id="closeAbout" class="close-modal" type="button">✕</button>
+    </header>
+    <div class="about-body">
+      <nav id="aboutNav" class="about-nav"></nav>
+      <article class="about-content">
+        <div id="aboutContent"></div>
+        <footer class="about-footer">
+          <button id="aboutPrev" type="button">Anterior</button>
+          <button id="aboutAuto" class="about-auto" type="button" aria-pressed="true">Auto</button>
+          <div class="about-progress"><span id="aboutProgress"></span></div>
+          <button id="aboutNext" type="button">Siguiente</button>
+        </footer>
+      </article>
+    </div>
+  </section>
+</div>
+
+<script src="app.js?v=668"></script>
+</body>
+</html>
